@@ -11,11 +11,9 @@ Ihre Aufgabe ist den kompletten Funktionsumfang der Wireframes zu implementieren
 im Video visualisierten Feinheiten zu berücksichtigen.
 Am Aussehen dürfen Anpassungen vorgenommen werden.
 
-[!Capture 1]
-(https://github.com/ursforrer/wed2-testat/blob/master/readmeresources/screenshot_wed2_testat_1.PNG)
+[!Capture 1](https://github.com/ursforrer/wed2-testat/blob/master/readmeresources/screenshot_wed2_testat_1.PNG)
 
-[!Capture 2]
-(https://github.com/ursforrer/wed2-testat/blob/master/readmeresources/screenshot_wed2_testat_2.PNG)
+[!Capture 2](https://github.com/ursforrer/wed2-testat/blob/master/readmeresources/screenshot_wed2_testat_2.PNG)
 
 ## Durchführung
 Durchführung
