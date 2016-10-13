@@ -5,7 +5,7 @@ var Datastore = require('nedb');
 var db = new Datastore({ filename: './data/note.db', autoload: true});
 
 function Note(noteTitle, noteDescription, noteDueDate, noteImportance) {
-    this.note = noteTitle;
+    this.title = noteTitle;
     this.description = noteDescription;
     this.duedate = noteDueDate;
     this.importane = noteImportance;
