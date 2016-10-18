@@ -1,2 +1,33 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!-- TODO: besprechung -->
+
+<div class="top">
+    <button type="button" class="left">
+        Create new Note
+    </button>
+    <button type="button" class="right">
+        Change Style
+    </button>
+</div>
+
+<div class="filter">
+    <button type="button" class="left">
+        By finish Date
+    </button>
+    <button type="button" class="left">
+        By created Date
+    </button>
+    <button type="button" class="left">
+        By Importance
+    </button>
+    <button type="button" class="right">
+        Show finished
+    </button>
+</div>
+
+<div class="notes">
+    <!-- TODO: inhalt checkboxen handlebars, textfeld, -->
+    <input type="checkbox" {{bindAttr checked="isChecked"}}>
+
+
+</div>
+
