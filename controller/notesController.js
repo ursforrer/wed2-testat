@@ -5,11 +5,16 @@ var store = require("../services/noteStore.js");
 
 module.exports.showIndex = function(req, res)
 {
-    res.type('text/html');
-    res.write("<html>");
-    res.write("<p>Willkommen! Zu der besten Pizzaria auf der Welt!</p>");
-    res.write("<img src='/images/pizza.jpg'>");
-    res.write("<form action='/orders' method='get'><input type='submit' value='Order a Pizza'></form>");
-    res.end("</html>");
+    res.render("index");
 };
+
+module.exports.createNote = function (req, res) {
+    res.render("newNote");
+}
+
+module.exports.showNode = function (req, res) {
+    store.get(req.params.id, function (err, note) {
+        res.render("showNote", note);
+    })
+}
 
