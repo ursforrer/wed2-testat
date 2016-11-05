@@ -5,7 +5,13 @@ var store = require("../services/noteStore.js");
 
 module.exports.showIndex = function(req, res)
 {
-    store.all(function (err, notes) {
+    var order = req.query['orderBy'];
+    console.log(order);
+    // Default Sortierung, wenn nicht anderes angegeben ist.
+    if (order === undefined || order === null) {
+        order = "duedate";
+    }
+    store.all(order, "1", function (err, notes) {
         if (err) {}
         res.render("index", {'notes' : notes});
     })
@@ -16,15 +22,24 @@ module.exports.newNode = function (req, res) {
 };
 
 module.exports.createNote = function (req, res) {
-    var note = store.add(req.body.title, req.body.description, req.body.duedate, req.body.importane, function (err, note) {
+    var newNote = req.body;
+    newNote.createdate = Date.now();
+    newNote.finished = false;
+    store.add(newNote, function (err, note) {
         res.render("succeeded", note);
     })
 };
 
 module.exports.editNode = function (req, res) {
     store.get(req.params.id, function (err, note) {
-        res.render("showNote", note);
+        res.render("editNote", note);
     })
+};
+
+module.exports.update = function (req, res) {
+    store.update(req.params.id, req.body, function (err, note) {
+        res.redirect("/");
+    });
 };
 
 

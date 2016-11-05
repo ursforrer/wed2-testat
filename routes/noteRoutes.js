@@ -11,5 +11,6 @@ router.get("/", notes.showIndex);
 router.get("/notes/new", notes.newNode);
 router.post("/notes", notes.createNote);
 router.get("/notes/edit/:id", notes.editNode);
+router.post("/notes/edit/:id", notes.update);
 
 module.exports = router;

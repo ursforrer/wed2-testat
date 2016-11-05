@@ -4,27 +4,15 @@
 var Datastore = require('nedb');
 var db = new Datastore({ filename: './data/note.db', autoload: true});
 
-function Note(noteTitle, noteDescription, noteDueDate, noteImportance) {
-    this.title = noteTitle;
-    this.description = noteDescription;
-    this.duedate = noteDueDate;
-    this.importane = noteImportance;
-    this.finished = false;
-    this.state = "OK";
-}
-
-function publicAddNote(noteTitle, noteDescription, noteDueDate, noteImportance, callback ) {
-    var note = new Note(noteTitle, noteDescription, noteDueDate, noteImportance);
+function publicAddNote(note, callback ) {
     db.insert(note , function (err, newNote) {
-        if (callback) {
-            callback(err, newNote);
-        }
+        callback(newNote);
     });
 }
 
-function publicRemove(id, callback) {
-    db.update({_id: id}, {$set: {"state": "DELETED"}}, {}, function (err, note) {
-        publicGet(id, callback);
+function publicUpdate(id, note, callback) {
+    db.update({_id: id}, note, {}, function (err) {
+        publicGet(id, callback)
     });
 }
 
@@ -34,10 +22,13 @@ function publicGet(id, callback) {
     });
 }
 
-function publicAll(callback) {
-    db.find({}, function (err, notes) {
+function publicAll(sortItem, sortOrder, callback) {
+    // Um das Query anpassen zu können, wenn nicht alle angezeigt werden sollen
+    // Ev. auch Definition ausserhalb dieser Funktion
+    var query = {};
+    db.find(query).sort({ [sortItem]: sortOrder }).exec(function (err, notes) {
         callback(err,notes);
     });
 }
 
-module.exports = {add : publicAddNote, delete : publicRemove, get : publicGet, all : publicAll};
+module.exports = {add : publicAddNote, get : publicGet, all : publicAll, update : publicUpdate};

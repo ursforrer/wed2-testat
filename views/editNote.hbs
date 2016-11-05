@@ -1,0 +1,21 @@
+<article id="{{_id}}" class="">
+    <form action="{{_id}}" method="post">
+        <label for="title">Title</label>
+        <input name="title" type="test" value="{{title}}"/>
+
+        <label for="description">Beschreibung</label>
+        <textarea name="description">{{description}}</textarea>
+
+        <label for="importance">Wichtigkeit</label>
+        <input name="importance" type="number" min="1" max="5" value="{{importance}}"/>
+
+        <label for="duedate">Fertig bis</label>
+        <input name="duedate" type="date" value="{{duedate}}"/>
+
+        <input name="createdate" type="hidden" value="{{createdate}}"/>
+        <input name="finished" type="hidden" value="{{finished}}"/>
+
+        <input type="submit" value="Save">
+        <input type="reset" value="Cancel">
+    </form>
+</article>

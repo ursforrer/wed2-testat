@@ -4,28 +4,33 @@
     <h1>Notes</h1>
 </header>
 <main>
-    <div class="top">
-        <button type="button" class="left">
-            Create new Note
-        </button>
-        <button type="button" class="right">
-            Change Style
-        </button>
-    </div>
+    <nav>
+        <form action="/notes/new" method="get">
+            <input type="submit" value="Create new note"/>
+        </form>
+        <form action="/" method="get">
+            <input type="hidden" name="style" value="black"/>
+            <input type="submit" value="Change style"/>
+        </form>
+    </nav>
 
     <div class="filter">
-        <button type="button" class="left">
-            By finish Date
-        </button>
-        <button type="button" class="left">
-            By created Date
-        </button>
-        <button type="button" class="left">
-            By Importance
-        </button>
-        <button type="button" class="right">
-            Show finished
-        </button>
+        <form action="/" method="get">
+            <input type="hidden" name="orderBy" value="duedate"/>
+            <input type="submit" value="By finish date"/>
+        </form>
+        <form action="/" method="get">
+            <input type="hidden" name="orderBy" value="createdate"/>
+            <input type="submit" value="By create date"/>
+        </form>
+        <form action="/" method="get">
+            <input type="hidden" name="orderBy" value="importance"/>
+            <input type="submit" value="By Importance"/>
+        </form>
+        <form action="/" method="get">
+            <input type="hidden" name="filter" value="true"/>
+            <input type="submit" value="Show finished"/>
+        </form>
     </div>
 
     <div class="notes">
@@ -46,6 +51,7 @@
                         <button type="submit">Edit</button>
                     </form>
                 </div>
+                <p>{{createdate}} {{finished}}</p>
             </article>
         {{/each}}
 
