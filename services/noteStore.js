@@ -15,28 +15,28 @@ function Note(noteTitle, noteDescription, noteDueDate, noteImportance) {
 
 function publicAddNote(noteTitle, noteDescription, noteDueDate, noteImportance, callback ) {
     var note = new Note(noteTitle, noteDescription, noteDueDate, noteImportance);
-    db.insert(note , function (err, newDoc) {
+    db.insert(note , function (err, newNote) {
         if (callback) {
-            callback(err, newDoc);
+            callback(err, newNote);
         }
     });
 }
 
 function publicRemove(id, callback) {
-    db.update({_id: id}, {$set: {"state": "DELETED"}}, {}, function (err, doc) {
+    db.update({_id: id}, {$set: {"state": "DELETED"}}, {}, function (err, note) {
         publicGet(id, callback);
     });
 }
 
 function publicGet(id, callback) {
-    db.findOne({ _id: id}, function (err, doc) {
-        callback(err, doc);
+    db.findOne({ _id: id}, function (err, note) {
+        callback(err, note);
     });
 }
 
-function publicAll() {
-    db.find({}, function (err, docs) {
-        callback(err,docs);
+function publicAll(callback) {
+    db.find({}, function (err, notes) {
+        callback(err,notes);
     });
 }
 

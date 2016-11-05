@@ -31,7 +31,23 @@
     <div class="notes">
         <!-- TODO: inhalt checkboxen handlebars, textfeld, -->
         <input type="checkbox" {{bindAttr checked="isChecked"}}>
-
+        {{#each notes}}
+            <article>
+                <div class="status">
+                    <p>{{duedate}}</p>
+                    <input type="checkbox" {{# if finished}}checked{{/if}}/>
+                </div>
+                <div class="output">
+                    <h3>{{title}}</h3>
+                    <textarea readonly>{{description}}</textarea>
+                </div>
+                <div class="actions">
+                    <form method="get" action="notes/edit/{{_id}}">
+                        <button type="submit">Edit</button>
+                    </form>
+                </div>
+            </article>
+        {{/each}}
 
     </div>
 </main>
