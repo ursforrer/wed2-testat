@@ -4,7 +4,7 @@
     <h1>Notes</h1>
 </header>
 <main>
-    <nav>
+    <div id="navigationstlye">
         <form action="/notes/new" method="get">
             <input type="submit" value="Create new note"/>
         </form>
@@ -12,9 +12,9 @@
             <input type="hidden" name="style" value="black"/>
             <input type="submit" value="Change style"/>
         </form>
-    </nav>
+    </div>
 
-    <div class="filter">
+    <div id="sortandfilter">
         <form action="/" method="get">
             <input type="hidden" name="orderBy" value="duedate"/>
             <input type="submit" value="By finish date"/>
@@ -33,7 +33,7 @@
         </form>
     </div>
 
-    <div class="notes">
+    <section class="notes">
         <!-- TODO: inhalt checkboxen handlebars, textfeld, -->
         <input type="checkbox" {{bindAttr checked="isChecked"}}>
         {{#each notes}}
@@ -55,7 +55,7 @@
             </article>
         {{/each}}
 
-    </div>
+    </section>
 </main>
 
 
