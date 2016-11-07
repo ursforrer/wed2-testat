@@ -1,20 +1,31 @@
-<h2>Neue ToDo - Notiz</h2>
+<header>
+    <div class="logo">
+        <picture>
+            <img src="images/todo.png" alt="Logo Todo">
+        </picture>
+    </div>
+    <h1>Neues ToDo hinzufügen</h1>
+</header>
 
-<form action="/notes" method="post">
+<main>
 
-<label for="title">Title</label>
-<input name="title" placeholder="Titel"/>
+        <form action="/notes" method="post">
 
-<label for="description">Beschreibung</label>
-<textarea name="description" placeholder="Titel"></textarea>
+        <label for="title">Title</label>
+        <input type="text" name="title" placeholder="Titel" required/>
 
-<label for="importance">Wichtigkeit</label>
-<input name="importance"/>
+        <label for="description">Beschreibung</label>
+        <textarea name="description" placeholder="Titel" required></textarea>
 
-<label for="duedate">Fertig bis</label>
-<input name="duedate" type="date"/>
+        <label for="importance">Wichtigkeit</label>
+        <input type="range" name="importance" min="1" max="5" required/>
 
-<input type="submit" value="Anlegen">
-<input type="reset" value="Abbruch">
+        <label for="duedate">Fertig bis</label>
+        <input name="duedate" type="date" required/>
+
+        <input type="submit" class="btn-green" value="Anlegen">
+        <input type="reset" class="btn-red" value="Abbruch">
 
 </form>
+
+    </main>

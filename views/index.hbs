@@ -1,11 +1,16 @@
 <!-- TODO: besprechung -->
 
 <header>
-    <h1>Notes Master</h1>
+    <div class="logo">
+        <picture>
+            <img src="images/todo.png" alt="Logo Todo">
+        </picture>
+    </div>
+    <h1>Note Pro</h1>
 </header>
 <main>
     <div id="navigationstlye">
-        <form action="/notes/new" class="green" method="get">
+        <form action="/notes/new" method="get">
             <input class="btn-green" type="submit" value="Create new note"/>
         </form>
         <div id="spacerheader"></div>
@@ -16,22 +21,26 @@
     </div>
 
     <div id="sortandfilter">
-        <form action="/" method="get">
-            <input type="hidden" name="orderBy" value="duedate"/>
-            <input class="btn-green" type="submit" value="By finish date"/>
-        </form>
-        <form action="/" method="get">
-            <input type="hidden" name="orderBy" value="createdate"/>
-            <input class="btn-green" type="submit" value="By create date"/>
-        </form>
-        <form action="/" method="get">
-            <input type="hidden" name="orderBy" value="importance"/>
-            <input class="btn-green" type="submit" value="By Importance"/>
-        </form>
-        <form action="/" method="get">
-            <input type="hidden" name="filter" value="true"/>
-            <input class="btn-green" type="submit" value="Show finished"/>
-        </form>
+        <div id="sort">
+            <form action="/" method="get">
+                <input type="hidden" name="orderBy" value="duedate"/>
+                <input class="btn-blue" type="submit" value="By finish date"/>
+            </form>
+            <form action="/" method="get">
+                <input type="hidden" name="orderBy" value="createdate"/>
+                <input class="btn-blue" type="submit" value="By create date"/>
+            </form>
+            <form action="/" method="get">
+                <input type="hidden" name="orderBy" value="importance"/>
+                <input class="btn-blue" type="submit" value="By Importance"/>
+            </form>
+        </div>
+        <div id="filter">
+            <form action="/" method="get">
+                <input type="hidden" name="filter" value="true"/>
+                <input class="btn-blue" type="submit" value="Show finished"/>
+            </form>
+        </div>
     </div>
 
     <section class="notes">
@@ -48,7 +57,7 @@
                 </div>
                 <div class="actions">
                     <form method="get" action="notes/edit/{{_id}}">
-                        <button class="btn-green" type="submit">Edit</button>
+                        <input class="btn-green" type="submit" value="Edit"/>
                     </form>
                 </div>
                 <p>{{createdate}} {{finished}}</p>

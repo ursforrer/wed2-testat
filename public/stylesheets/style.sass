@@ -4,6 +4,7 @@ body
   border-collapse: collapse
   margin: 0
   font-family: 'Open Sans', sans-serif
+  margin-bottom: 60px
 
 header
   background-color: cadetblue
@@ -15,10 +16,25 @@ header
   padding: 10px
   justify-content: space-between
 
-#navigationstlye > form
-  flex-basis: 50px
+  > form
+    flex-basis: 16.67%
+
+#navigationstlye > form > input
+  width: 100%
 
 #sortandfilter
+  padding: 10px
+
+#sort
+  width: 78%
+  display: flex
+  flex-flow: column
+  flex-wrap: wrap
+
+  > form
+    flex: 1
+
+#filter
   width: 20%
 
 #spacerheader
@@ -27,18 +43,24 @@ header
 
 .actions
 
-.output
+.logo > picture > img
+  width: 10%
+  position: relative
+  height: 10%
+  display: inline-block
 
 article
   flex: 1 100%
+  margin: 10px
   padding: 10px
+  background-color: lightgray
 
 .notes
   display: flex
   flex-direction: row
   flex-wrap: wrap
 
-input[type="submit"]
+input[type="submit"], input[type="reset"]
   border: none
   color: white
   margin: 0px
@@ -52,3 +74,20 @@ input[type="submit"]
 
 .btn-green
   background-color: #4CAF50
+
+.btn-red
+  background-color: red
+
+.btn-blue
+  background-color: deepskyblue
+
+footer
+  background-color: lightgray
+  height: 60px
+  width: 100%
+  bottom: 0
+  position: fixed
+
+  > small
+    padding: 10px
+    color: white
