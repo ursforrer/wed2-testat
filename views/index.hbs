@@ -1,41 +1,41 @@
 <!-- TODO: besprechung -->
 
 <header>
-    <h1>Notes</h1>
+    <h1>Notes Master</h1>
 </header>
 <main>
     <div id="navigationstlye">
-        <form action="/notes/new" method="get">
-            <input type="submit" value="Create new note"/>
+        <form action="/notes/new" class="green" method="get">
+            <input class="btn-green" type="submit" value="Create new note"/>
         </form>
+        <div id="spacerheader"></div>
         <form action="/" method="get">
             <input type="hidden" name="style" value="black"/>
-            <input type="submit" value="Change style"/>
+            <input class="btn-green" type="submit" value="Change style"/>
         </form>
     </div>
 
     <div id="sortandfilter">
         <form action="/" method="get">
             <input type="hidden" name="orderBy" value="duedate"/>
-            <input type="submit" value="By finish date"/>
+            <input class="btn-green" type="submit" value="By finish date"/>
         </form>
         <form action="/" method="get">
             <input type="hidden" name="orderBy" value="createdate"/>
-            <input type="submit" value="By create date"/>
+            <input class="btn-green" type="submit" value="By create date"/>
         </form>
         <form action="/" method="get">
             <input type="hidden" name="orderBy" value="importance"/>
-            <input type="submit" value="By Importance"/>
+            <input class="btn-green" type="submit" value="By Importance"/>
         </form>
         <form action="/" method="get">
             <input type="hidden" name="filter" value="true"/>
-            <input type="submit" value="Show finished"/>
+            <input class="btn-green" type="submit" value="Show finished"/>
         </form>
     </div>
 
     <section class="notes">
         <!-- TODO: inhalt checkboxen handlebars, textfeld, -->
-        <input type="checkbox" {{bindAttr checked="isChecked"}}>
         {{#each notes}}
             <article>
                 <div class="status">
@@ -48,7 +48,7 @@
                 </div>
                 <div class="actions">
                     <form method="get" action="notes/edit/{{_id}}">
-                        <button type="submit">Edit</button>
+                        <button class="btn-green" type="submit">Edit</button>
                     </form>
                 </div>
                 <p>{{createdate}} {{finished}}</p>
