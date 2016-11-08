@@ -22,11 +22,10 @@ function publicGet(id, callback) {
     });
 }
 
-function publicAll(sortItem, sortOrder, callback) {
+function publicAll(sortItem, sortOrder, filter, callback) {
     // Um das Query anpassen zu können, wenn nicht alle angezeigt werden sollen
     // Ev. auch Definition ausserhalb dieser Funktion
-    var query = {};
-    db.find(query).sort({ [sortItem]: sortOrder }).exec(function (err, notes) {
+    db.find(filter).sort({ [sortItem]: sortOrder }).exec(function (err, notes) {
         callback(err,notes);
     });
 }

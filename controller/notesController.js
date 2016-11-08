@@ -5,14 +5,27 @@ var store = require("../services/noteStore.js");
 
 module.exports.showIndex = function(req, res)
 {
-    var order = req.query['orderBy'];
-    console.log(order);
-    // Default Sortierung, wenn nicht anderes angegeben ist.
-    if (order === undefined || order === null) {
-        order = "duedate";
+    var orderBy = req.query['orderBy'];
+    console.log(orderBy);
+    var orderParameter;
+    if (orderBy === undefined || orderBy === null) {
+        // Falls nichts mitgegeben wurde, sollten die Werte so belassen werden.
+        if (req.cookies.sortby === undefined || req.cookies.sortby === null) {
+            // Initial, falls keine Cookies vorhanden sind.
+            orderParameter = "duedate";
+            res.cookie("sortby", orderParameter);
+        }
+        else {
+            // Ansonsten vorherigen Cookieparameter auslesen
+            orderParameter = req.cookies.sortby;
+        }
     }
-    store.all(order, "1", function (err, notes) {
-        if (err) {}
+    else {
+        // Werte setzen, wenn etwas über die Queryparameter mitgegeben wurde.
+        res.cookie("sortby", orderBy);
+        orderParameter = orderBy;
+    }
+    store.all(orderParameter, "1", "", function (err, notes) {
         res.render("index", {'notes' : notes});
     })
 };
