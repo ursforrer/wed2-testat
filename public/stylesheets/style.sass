@@ -11,12 +11,10 @@ body
 
 header
   background-color: cadetblue
-  padding: 10px
 
 #navigationstlye
   display: flex
   flex-flow: row
-  padding: 10px
   justify-content: space-between
 
   > form
@@ -26,7 +24,6 @@ header
   width: 100%
 
 #sortandfilter
-  padding: 10px
 
 #sort
   width: 78%
@@ -64,16 +61,20 @@ header
   height: 10%
   display: inline-block
 
+main
+  padding: 10px
+
 article
   flex: 1 100%
-  margin: 10px
-  padding: 10px
-  background-color: lightgray
+  margin-bottom: 10px
 
 .notes
   display: flex
   flex-direction: row
   flex-wrap: wrap
+
+input, textarea
+  font-family: 'Roboto', sans-serif;
 
 button, input[type="reset"]
   border: none
