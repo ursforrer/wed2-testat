@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 *
   box-sizing: border-box;
@@ -6,7 +6,7 @@
   padding: 0;
 
 body
-  font-family: 'Open Sans', sans-serif
+  font-family: 'Roboto', sans-serif;
   margin-bottom: 60px
 
 header
@@ -22,7 +22,7 @@ header
   > form
     flex-basis: 16.67%
 
-#navigationstlye > form > input
+#navigationstlye > form > button
   width: 100%
 
 #sortandfilter
@@ -45,6 +45,18 @@ header
   width: 5%
 
 .actions
+  display: inline-block
+  width: 6%
+
+.status
+  display: inline-block
+  width: 10%
+  margin-right: 2%
+
+.output
+  display: inline-block
+  width: 70%
+  margin-right: 2%
 
 .logo > picture > img
   width: 10%
@@ -63,7 +75,7 @@ article
   flex-direction: row
   flex-wrap: wrap
 
-input[type="submit"], input[type="reset"]
+button, input[type="reset"]
   border: none
   color: white
   margin: 0px
@@ -72,7 +84,7 @@ input[type="submit"], input[type="reset"]
   text-decoration: none
   display: inline-block
   font-size: 14px
-  font-family: 'Open Sans', sans-serif
+  font-family: 'Roboto', sans-serif;
   -webkit-appearance: none;
 
 .btn-green
@@ -94,3 +106,32 @@ footer
   > small
     padding: 10px
     color: white
+
+form
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+
+  > label
+    flex: 1 20%
+    font-weight: bold
+    padding-bottom: 0.3rem
+    @media(max-width: 767px)
+      flex: 1 100%
+
+
+  > input, textarea, div
+    flex: 1 80%
+    margin-bottom: 1rem
+    @media(max-width: 767px)
+      flex: 1 100%
+
+textarea
+  width: 90%
+  height: 5rem
+
+.actions > form > button
+  width: 100%
+  height: 100%
+
+
