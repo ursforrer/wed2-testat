@@ -11,12 +11,12 @@
 <main>
     <div id="navigationstlye">
         <form action="/notes/new" method="get">
-            <input class="btn-green" type="submit" value="Create new note"/>
+            <button type="submit" class="btn-green">Create new note</button>
         </form>
         <div id="spacerheader"></div>
         <form action="/" method="get">
             <input type="hidden" name="style" value="black"/>
-            <input class="btn-green" type="submit" value="Change style"/>
+            <button type="submit" class="btn-green">Change style</button>
         </form>
     </div>
 
@@ -24,15 +24,15 @@
         <div id="sort">
             <form action="/" method="get">
                 <input type="hidden" name="orderBy" value="duedate"/>
-                <input class="btn-blue" type="submit" value="By finish date"/>
+                <button type="submit" class="btn-blue">By finish date</button>
             </form>
             <form action="/" method="get">
                 <input type="hidden" name="orderBy" value="createdate"/>
-                <input class="btn-blue" type="submit" value="By create date"/>
+                <button type="submit" class="btn-blue">By create date</button>
             </form>
             <form action="/" method="get">
                 <input type="hidden" name="orderBy" value="importance"/>
-                <input class="btn-blue" type="submit" value="By Importance"/>
+                <button type="submit" class="btn-blue">By Importance</button>
             </form>
         </div>
         <div id="filter">
@@ -57,7 +57,7 @@
                 </div>
                 <div class="actions">
                     <form method="get" action="notes/edit/{{_id}}">
-                        <input class="btn-green" type="submit" value="Edit"/>
+                        <button type="submit" class="btn-green">Edit</button>
                     </form>
                 </div>
             </article>

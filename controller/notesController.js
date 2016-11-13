@@ -6,7 +6,6 @@ var store = require("../services/noteStore.js");
 module.exports.showIndex = function(req, res)
 {
     var orderBy = req.query['orderBy'];
-    console.log(orderBy);
     var orderParameter;
     if (orderBy === undefined || orderBy === null) {
         // Falls nichts mitgegeben wurde, sollten die Werte so belassen werden.
