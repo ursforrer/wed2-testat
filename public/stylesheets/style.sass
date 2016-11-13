@@ -18,27 +18,32 @@ header
   display: flex
   flex-flow: row
   justify-content: space-between
+  margin-bottom: 1rem
 
   > form
     flex-basis: 16.67%
 
 #navigationstlye > form > button
-  width: 100%
+  width: 99%
 
 #sortandfilter
+  display: flex
+  flex-flow: row
+  flex-wrap: wrap
 
 #sort
-  width: 78%
+  flex: 1 75%
   display: flex
   flex-flow: row
   flex-wrap: wrap
 
   > form
     flex: 1
-    flex-basis: 16.67%
+    flex-basis: 25%
 
 #filter
-  width: 20%
+  flex: 1 25%
+
 
 #spacerheader
   flex: 0 0 auto
@@ -79,7 +84,7 @@ input, textarea
   font-family: 'Roboto', sans-serif;
 
 button, input[type="reset"]
-  width: 98%
+  width: 99%
   border: none
   margin: 0px
   padding: 15px 15px
