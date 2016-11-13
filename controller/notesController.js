@@ -142,7 +142,13 @@ module.exports.editNode = function (req, res) {
 };
 
 module.exports.update = function (req, res) {
-    store.update(req.params.id, req.body, function (err, note) {
+    var editNote = req.body;
+    if (editNote.finished == "on") {
+        editNote.finished == "true";
+    } else {
+        editNote.finished == "false";
+    }
+    store.update(req.params.id, editNote, function (err, note) {
         res.redirect("/");
     });
 };

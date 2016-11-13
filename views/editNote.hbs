@@ -22,8 +22,11 @@
         <label for="duedate">Fertig bis</label>
         <input name="duedate" type="date" value="{{duedate}}"/>
 
+        <label for="finished" {{finished}}>Fertig bis</label>
+
         <input name="createdate" type="hidden" value="{{createdate}}"/>
-        <input name="finished" type="hidden" value="{{finished}}"/>
+
+        <input name="finished" type="checkbox" {{#if finished}}checked{{/if}} />
 
         <button type="submit" class="btn-green">Save</button>
         <button type="submit" class="btn-red">Cancel</button>
