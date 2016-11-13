@@ -4,7 +4,7 @@
             <img src="images/todo.png" alt="Logo Todo">
         </picture>
     </div>
-    <h1>Neues ToDo hinzufügen</h1>
+    <h1>Create new To-Do note</h1>
 </header>
 
 <main>
@@ -13,23 +13,22 @@
         <label for="title">Title</label>
         <input name="title" type="test" value="{{title}}"/>
 
-        <label for="description">Beschreibung</label>
+        <label for="description">Description</label>
         <textarea name="description">{{description}}</textarea>
 
-        <label for="importance">Wichtigkeit</label>
+        <label for="importance">Importance</label>
         <input name="importance" type="number" min="1" max="5" value="{{importance}}"/>
 
-        <label for="duedate">Fertig bis</label>
+        <label for="duedate">Due to</label>
         <input name="duedate" type="date" value="{{duedate}}"/>
 
-        <label for="finished" {{finished}}>Fertig bis</label>
-
+        <label for="finished" {{finished}}>Finished</label>
         <input name="createdate" type="hidden" value="{{createdate}}"/>
 
         <input name="finished" type="checkbox" {{#if finished}}checked{{/if}} />
 
         <button type="submit" class="btn-green">Save</button>
-        <button type="submit" class="btn-red">Cancel</button>
+        <a href="/" class="button btn-red">Cancel</a>
     </form>
 </article>
 </main>

@@ -42,12 +42,18 @@ header
     flex-basis: 25%
     @media(max-width: 767px)
       flex: 1 100%
+    @media(min-width: 768px)
+      margin-right: 5px
 
 
 #filter
   flex: 1 25%
   @media(max-width: 767px)
     flex: 1 100%
+
+  > form
+    @media(min-width: 768px)
+      margin-right: 2px
 
 
 #spacerheader
@@ -88,14 +94,15 @@ article
 input, textarea
   font-family: 'Roboto', sans-serif;
 
-button, input[type="reset"]
-  width: 99%
+button, input[type="reset"], .button
+  width: 100%
   border: none
   margin: 0px
   padding: 15px 15px
   text-align: center
   text-decoration: none
   display: inline-block
+  color: white
   font-size: 14px
   font-family: 'Roboto', sans-serif;
   -webkit-appearance: none;
