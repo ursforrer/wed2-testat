@@ -123,7 +123,7 @@ module.exports.showIndex = function(req, res)
 };
 
 module.exports.newNode = function (req, res) {
-    res.render("newNote");
+    res.render("newNote", { 'css' : req.cookies.style});
 };
 
 module.exports.createNote = function (req, res) {
@@ -131,13 +131,13 @@ module.exports.createNote = function (req, res) {
     newNote.createdate = Date.now();
     newNote.finished = false;
     store.add(newNote, function (err, note) {
-        res.render("succeeded", note);
+        res.render("succeeded", { 'css' : req.cookies.style, note});
     })
 };
 
 module.exports.editNode = function (req, res) {
     store.get(req.params.id, function (err, note) {
-        res.render("editNote", note);
+        res.render("editNote", { 'css' : req.cookies.style, note});
     })
 };
 
