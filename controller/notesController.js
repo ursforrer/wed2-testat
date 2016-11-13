@@ -16,7 +16,7 @@ module.exports.showIndex = function(req, res)
 
     if (apperance === undefined || apperance === null) {
         if (req.cookies.style === undefined || req.cookies.style === null) {
-            styleParameter = "white";
+            styleParameter = "light";
             res.cookie("style", styleParameter);
         }
         else {
@@ -27,7 +27,7 @@ module.exports.showIndex = function(req, res)
         res.cookie("style", apperance);
         if (apperance == req.cookies.style) {
             if (req.cookies.style == "dark") {
-                styleParameter = "white";
+                styleParameter = "light";
             }
             else {
                 styleParameter = "dark";
@@ -100,11 +100,11 @@ module.exports.showIndex = function(req, res)
     }
 
     var styleForRender;
-    if (styleParameter == "white") {
+    if (styleParameter == "light") {
         styleForRender = "dark";
     }
     else {
-        styleForRender = "white";
+        styleForRender = "light";
     }
 
     var filterForRender;
