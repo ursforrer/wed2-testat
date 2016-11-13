@@ -6,16 +6,74 @@ var store = require("../services/noteStore.js");
 module.exports.showIndex = function(req, res)
 {
     var orderBy = req.query['orderBy'];
+    var apperance = req.query['style'];
+    var filter = req.query['filter'];
     var orderParameter;
     var orderParameterTwo;
+    var styleParameter;
+    var filterParameter;
     var sort;
+
+    if (apperance === undefined || apperance === null) {
+        if (req.cookies.style === undefined || req.cookies.style === null) {
+            styleParameter = "white";
+            res.cookie("style", styleParameter);
+        }
+        else {
+            styleParameter = req.cookies.style;
+        }
+    }
+    else {
+        res.cookie("style", apperance);
+        if (apperance == req.cookies.style) {
+            if (req.cookies.style == "dark") {
+                styleParameter = "white";
+            }
+            else {
+                styleParameter = "dark";
+            }
+        }
+        else {
+            styleParameter = apperance;
+        }
+        res.cookie("style", styleParameter);
+    }
+
+    if (filter === undefined || filter === null) {
+        if (req.cookies.filter === undefined || req.cookies.filter === null) {
+            filterParameter = "false";
+            res.cookie("filter", filterParameter);
+        }
+        else {
+            filterParameter = req.cookies.filter;
+        }
+    }
+    else {
+        //res.cookie("filter", filter);
+        if (filter == req.cookies.filter) {
+            if (req.cookies.filter == "true") {
+                filterParameter = "false";
+            }
+            else {
+                filterParameter = "true";
+            }
+        }
+        else {
+            filterParameter = filter;
+        }
+        res.cookie("filter", filterParameter);
+    }
+
+
+
     if (orderBy === undefined || orderBy === null) {
         // Falls nichts mitgegeben wurde, sollten die Werte so belassen werden.
         if (req.cookies.sortby === undefined || req.cookies.sortby === null) {
             // Initial, falls keine Cookies vorhanden sind.
             orderParameter = "duedate";
+            orderParameterTwo = "1";
             res.cookie("sortby", orderParameter);
-            res.cookie("sort", "1");
+            res.cookie("sort", orderParameterTwo);
         }
         else {
             // Ansonsten vorherigen Cookieparameter auslesen
@@ -40,8 +98,27 @@ module.exports.showIndex = function(req, res)
         res.cookie("sort", orderParameterTwo);
         orderParameter = orderBy;
     }
-    store.all(orderParameter, orderParameterTwo, "", function (err, notes) {
-        res.render("index", {'notes' : notes});
+
+    var styleForRender;
+    if (styleParameter == "white") {
+        styleForRender = "dark";
+    }
+    else {
+        styleForRender = "white";
+    }
+
+    var filterForRender;
+    if (filterParameter == "false") {
+        filterForRender = "true";
+    }
+    else {
+        filterForRender = "false";
+    }
+
+    store.all(orderParameter, orderParameterTwo, filterParameter, function (err, notes) {
+        console.log(orderParameter);
+        console.log(orderParameterTwo);
+        res.render("index", {'notes' : notes, 'style' : styleForRender, 'css' : styleParameter, 'filter' : filterForRender});
     })
 };
 
