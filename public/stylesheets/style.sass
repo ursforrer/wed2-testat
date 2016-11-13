@@ -10,7 +10,9 @@ body
   margin-bottom: 60px
 
 header
-  background-color: cadetblue
+  div
+    vertical-align: top
+    display: inline-block
 
 #navigationstlye
   display: flex
@@ -28,7 +30,7 @@ header
 #sort
   width: 78%
   display: flex
-  flex-flow: column
+  flex-flow: row
   flex-wrap: wrap
 
   > form
@@ -56,10 +58,9 @@ header
   margin-right: 2%
 
 .logo > picture > img
-  width: 10%
+  width: 100px
   position: relative
-  height: 10%
-  display: inline-block
+  height: 100px
 
 main
   padding: 10px
@@ -78,7 +79,6 @@ input, textarea
 
 button, input[type="reset"]
   border: none
-  color: white
   margin: 0px
   padding: 15px 15px
   text-align: center
@@ -88,17 +88,8 @@ button, input[type="reset"]
   font-family: 'Roboto', sans-serif;
   -webkit-appearance: none;
 
-.btn-green
-  background-color: #4CAF50
-
-.btn-red
-  background-color: red
-
-.btn-blue
-  background-color: deepskyblue
 
 footer
-  background-color: darkgray
   height: 60px
   width: 100%
   bottom: 0
@@ -106,7 +97,6 @@ footer
 
   > small
     padding: 10px
-    color: white
 
 form
   display: flex
