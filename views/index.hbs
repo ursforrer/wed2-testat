@@ -11,7 +11,7 @@
 </header>
 <main>
     <div id="navigationstlye">
-        <form action="/notes/new" method="get">
+        <form action="/new" method="get">
             <button type="submit" class="btn-green">Create new note</button>
         </form>
         <div id="spacerheader"></div>
@@ -57,14 +57,14 @@
                     <textarea readonly>{{description}}</textarea>
                 </div>
                 <div class="actions">
-                    <form method="get" action="notes/edit/{{_id}}">
+                    <form method="get" action="edit/{{_id}}">
                         <button type="submit" class="btn-green">Edit</button>
                     </form>
                 </div>
             </article>
 
         {{else}}
-            <h3>Leere Liste. Es sind keine Einträge vorhanden.</h3>
+            <h3>In der aktuellen Ansicht sind keine Einträge vorhanden. Um Einträge anzuzeigen, passen Sie die Filter an oder erstellen neue Notes in der App.</h3>
         {{/each}}
 
     </section>

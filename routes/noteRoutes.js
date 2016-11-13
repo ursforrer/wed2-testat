@@ -8,9 +8,9 @@ var notes = require('../controller/notesController.js');
 // Route für Homeseite
 router.get("/", notes.showIndex);
 
-router.get("/notes/new", notes.newNode);
-router.post("/notes", notes.createNote);
-router.get("/notes/edit/:id", notes.editNode);
-router.post("/notes/edit/:id", notes.update);
+router.get("/new", notes.newNode);
+router.post("/new", notes.createNote);
+router.get("/edit/:id", notes.editNode);
+router.post("/edit/:id", notes.update);
 
 module.exports = router;

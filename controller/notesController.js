@@ -116,8 +116,6 @@ module.exports.showIndex = function(req, res)
     }
 
     store.all(orderParameter, orderParameterTwo, filterParameter, function (err, notes) {
-        console.log(orderParameter);
-        console.log(orderParameterTwo);
         res.render("index", {'notes' : notes, 'style' : styleForRender, 'css' : styleParameter, 'filter' : filterForRender});
     })
 };
