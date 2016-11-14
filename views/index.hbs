@@ -48,13 +48,21 @@
         <!-- TODO: inhalt checkboxen handlebars, textfeld, -->
         {{#each notes}}
             <article>
+                <header>
+                    <div class="duedate">
+                        <time datetime="{{duedate}}">{{duedate}}</time>
+                    </div>
+                    <div class="importance">
+                        <p>Importance: {{importance}}</p>
+                    </div>
+                </header>
                 <div class="status">
-                    <p>{{duedate}}</p>
+                    <p></p>
                     <input type="checkbox" {{# if finished}}checked{{/if}}/>
                 </div>
                 <div class="output">
                     <h3>{{title}}</h3>
-                    <textarea readonly>{{description}}</textarea>
+                    <p>{{description}}</p>
                 </div>
                 <div class="actions">
                     <form method="get" action="edit/{{_id}}">
