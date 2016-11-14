@@ -75,18 +75,28 @@ header
   width: 5%
 
 .actions
-  display: inline-block
-  width: 6%
+  flex: 1 20%
+  > form
+    @media(min-width: 768px) and (max-width: 991px)
+      margin-left: 80%
+      margin-top: 1rem
+      width: 20%
 
 .status
-  display: inline-block
-  width: 10%
-  margin-right: 2%
+  flex: 1 10%
+  @media(max-width: 992px)
+    flex: 1 20%
+  @media(max-width: 767px)
+    flex: 1 100%
 
 .output
-  display: inline-block
-  width: 70%
-  margin-right: 2%
+  flex: 1 70%
+  > h3
+    margin-bottom: 0.5rem
+  @media(max-width: 767px)
+    flex: 1 100%
+    margin-top: 0.5rem
+    margin-bottom: 0.5rem
 
 .logo > picture > img
   width: 70px
@@ -100,6 +110,11 @@ main
 article
   flex: 1 100%
   margin-bottom: 10px
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  border: black 2px dotted
+  padding: 0.5rem
 
 .notes
   display: flex
@@ -157,7 +172,7 @@ form
       flex: 1 100%
 
 textarea
-  width: 90%
+  width: 99%
   height: 5rem
 
 .actions > form > button
