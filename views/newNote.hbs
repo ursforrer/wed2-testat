@@ -10,6 +10,7 @@
 </header>
 
 <main>
+    <article>
         <form action="/new" method="post">
 
         <label for="title">Title</label>
@@ -24,8 +25,11 @@
         <label for="duedate">Fertig bis</label>
         <input name="duedate" type="date" required/>
 
-        <button type="submit" class="btn-green">Create</button>
-        <a href="/" class="button btn-red">Cancel</a>
+        <div id="submitbuttons">
+            <button type="submit" class="btn-green">Create</button>
+            <a href="/" class="button btn-red">Cancel</a>
+        </div>
+    </article>
 
 </form>
 </main>
