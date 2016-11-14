@@ -124,7 +124,9 @@ article
   > header
     margin-bottom: 0.5rem
     width: 100%
-    background-color: white;
+    background-color: grey;
+    padding: 0.5rem
+    color: white
 
 .notes
   display: flex
@@ -165,6 +167,7 @@ form
   display: flex
   flex-direction: row
   flex-wrap: wrap
+  width: 100%
 
   > label
     flex: 1 20%
@@ -182,7 +185,8 @@ form
 
 .output > p
   width: 99%
-  height: 5rem
+  height: auto
+  min-height: 5rem
 
 .actions > form > button
   width: 100%
@@ -194,5 +198,7 @@ header > div > h1
 
 .importance
   position: absolute
-  right: 20px
+  right: 2rem
 
+p.bold, time.bold
+  font-weight: bold
