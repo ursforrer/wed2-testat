@@ -14,58 +14,43 @@ module.exports.showIndex = function(req, res)
     var filterParameter;
     var sort;
 
+    // Behandlung des Style Parameters
     if (apperance === undefined || apperance === null) {
+        // Initale Seztung der Werte, falls nichts anderes angegben ist.
         if (req.cookies.style === undefined || req.cookies.style === null) {
             styleParameter = "light";
             res.cookie("style", styleParameter);
         }
         else {
+            // Falls nichts übermittelt wurde, aber bereits etwas gesetzt ist, wird dies übergeben
             styleParameter = req.cookies.style;
         }
     }
     else {
-        res.cookie("style", apperance);
-        if (apperance == req.cookies.style) {
-            if (req.cookies.style == "dark") {
-                styleParameter = "light";
-            }
-            else {
-                styleParameter = "dark";
-            }
-        }
-        else {
-            styleParameter = apperance;
-        }
+        // Parameter so setzen, wie es in der Query angegeben ist.
+        styleParameter = apperance;
         res.cookie("style", styleParameter);
     }
 
+    // Behandlung des Filter Parameters
     if (filter === undefined || filter === null) {
+        // Initale Seztung der Werte, falls nichts anderes angegben ist.
         if (req.cookies.filter === undefined || req.cookies.filter === null) {
             filterParameter = "false";
             res.cookie("filter", filterParameter);
         }
         else {
+            // Falls nichts übermittelt wurde, aber bereits etwas gesetzt ist, wird dies übergeben
             filterParameter = req.cookies.filter;
         }
     }
     else {
-        //res.cookie("filter", filter);
-        if (filter == req.cookies.filter) {
-            if (req.cookies.filter == "true") {
-                filterParameter = "false";
-            }
-            else {
-                filterParameter = "true";
-            }
-        }
-        else {
-            filterParameter = filter;
-        }
+        // Paramter so setzen, wie es in der Query angegeben ist.
+        filterParameter = filter;
         res.cookie("filter", filterParameter);
     }
 
-
-
+    // Behandlung des Order Parameters
     if (orderBy === undefined || orderBy === null) {
         // Falls nichts mitgegeben wurde, sollten die Werte so belassen werden.
         if (req.cookies.sortby === undefined || req.cookies.sortby === null) {
@@ -99,29 +84,16 @@ module.exports.showIndex = function(req, res)
         orderParameter = orderBy;
     }
 
-    var styleForRender;
-    if (styleParameter == "light") {
-        styleForRender = "dark";
-    }
-    else {
-        styleForRender = "light";
-    }
-
-    var filterForRender;
-    if (filterParameter == "false") {
-        filterForRender = "true";
-    }
-    else {
-        filterForRender = "false";
-    }
+    var styleForRender = (styleParameter == "light" ? "dark" : "light");
+    var filterForRender = (filterParameter == "false" ? "true" : "false");
 
     store.all(orderParameter, orderParameterTwo, filterParameter, function (err, notes) {
-        res.render("index", {'notes' : notes, 'style' : styleForRender, 'css' : styleParameter, 'filter' : filterForRender});
+        res.render("index", {'notes' : notes, 'title' : "Node Pro - List", 'style' : styleForRender, 'css' : styleParameter, 'filter' : filterForRender});
     })
 };
 
 module.exports.newNode = function (req, res) {
-    res.render("newNote", { 'css' : req.cookies.style});
+    res.render("newNote", { 'css' : req.cookies.style, 'title' : "Node Pro - New Node"});
 };
 
 module.exports.createNote = function (req, res) {
@@ -135,7 +107,7 @@ module.exports.createNote = function (req, res) {
 
 module.exports.editNode = function (req, res) {
     store.get(req.params.id, function (err, note) {
-        res.render("editNote", { 'css' : req.cookies.style, note});
+        res.render("editNote", { 'css' : req.cookies.style, note, 'title' : "Node Pro - Edit Node"});
     })
 };
 
