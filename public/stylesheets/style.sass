@@ -58,22 +58,19 @@ header
 
 
 #submitbuttons
+  margin-left: 20%
   flex: 1 100%
   display: flex
   flex-flow: row
   flex-wrap: wrap
+  @media(max-width: 767px)
+    margin-left: 0
 
-  button
-    flex-basis: 20%
-    width: 99%
-    @media(max-width: 767px)
-      flex: 1 100%
-
-  a
-    flex-basis: 20%
-    width: 99%
-    @media(max-width: 767px)
-      flex: 1 100%
+  button, a
+    flex-basis: 100%
+    @media(min-width: 768px)
+      flex-basis: 15%
+      margin-right: 0.5rem
 
 #spacerheader
   flex: 0 0 auto
@@ -90,7 +87,7 @@ header
 .status
   flex: 1 10%
   @media(max-width: 992px)
-    flex: 1 20%
+    flex: 1 10%
   @media(max-width: 767px)
     flex: 1 100%
 
@@ -98,6 +95,8 @@ header
   flex: 1 70%
   > h3
     margin-bottom: 0.5rem
+  @media(max-width: 992px)
+    flex: 1 90%
   @media(max-width: 767px)
     flex: 1 100%
     margin-top: 0.5rem
@@ -154,15 +153,6 @@ button, input[type="reset"], .button
     margin-bottom: 0.5rem
 
 
-footer
-  height: 60px
-  width: 100%
-  bottom: 0
-  position: fixed
-
-  > small
-    padding: 10px
-
 form
   display: flex
   flex-direction: row
@@ -200,5 +190,15 @@ header > div > h1
   position: absolute
   right: 2rem
 
-p.bold, time.bold
+p.bold, time.bold, span.bold
   font-weight: bold
+
+label
+  text-align: right
+  padding-right: 0.5rem
+  @media(max-width: 767px)
+    text-align: left
+    padding-right: 0
+textarea
+  height: auto
+  min-height: 7rem

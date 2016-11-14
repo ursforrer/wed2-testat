@@ -24,9 +24,10 @@
         <label for="duedate">Due to</label>
         <input name="duedate" type="date" value="{{duedate}}"/>
 
-        <label for="finished" {{finished}}>Finished</label>
+
         <input name="createdate" type="hidden" value="{{createdate}}"/>
 
+        <label for="finished" {{finished}}>Finished</label>
         <input name="finished" type="checkbox" {{#if finished}}checked{{/if}} />
 
         <div id="submitbuttons">

@@ -23,15 +23,10 @@ function publicGet(id, callback) {
 }
 
 function publicAll(sortItem, sortOrder, filter, callback) {
-    // Um das Query anpassen zu können, wenn nicht alle angezeigt werden sollen
-    // Ev. auch Definition ausserhalb dieser Funktion
-    if (filter == "true") {
-        filter = "{ finished: 'true'}";
-    }
-    else {
-        filter = "";
-    }
-    db.find(filter).sort({ [sortItem]: sortOrder }).exec(function (err, notes) {
+    // Change query depending on the value
+    var query = (filter == true ? {finished: false} : {});
+
+    db.find(query).sort({ [sortItem]: sortOrder }).exec(function (err, notes) {
         callback(err,notes);
     });
 }

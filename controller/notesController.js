@@ -36,7 +36,7 @@ module.exports.showIndex = function(req, res)
     if (filter === undefined || filter === null) {
         // Initale Seztung der Werte, falls nichts anderes angegben ist.
         if (req.cookies.filter === undefined || req.cookies.filter === null) {
-            filterParameter = "false";
+            filterParameter = false;
             res.cookie("filter", filterParameter);
         }
         else {
@@ -84,16 +84,23 @@ module.exports.showIndex = function(req, res)
         orderParameter = orderBy;
     }
 
+    // Workaround, da aus der Session der Stirngwert gelesen wird und nicht der Booleanwert
+    if (filterParameter == "false") {
+        filterParameter = false;
+    }
+    else if (filterParameter == "true") {
+        filterParameter = true;
+    }
+
     var styleForRender = (styleParameter == "light" ? "dark" : "light");
-    var filterForRender = (filterParameter == "false" ? "true" : "false");
 
     store.all(orderParameter, orderParameterTwo, filterParameter, function (err, notes) {
-        res.render("index", {'notes' : notes, 'title' : "Node Pro - List", 'style' : styleForRender, 'css' : styleParameter, 'filter' : filterForRender});
+        res.render("index", {'notes' : notes, 'style' : styleForRender, 'css' : styleParameter, 'filter' : filterParameter, 'headtitle' : "Node Pro - List"});
     })
 };
 
 module.exports.newNode = function (req, res) {
-    res.render("newNote", { 'css' : req.cookies.style, 'title' : "Node Pro - New Node"});
+    res.render("newNote", { 'css' : req.cookies.style, 'headtitle' : "Node Pro - New Node"});
 };
 
 module.exports.createNote = function (req, res) {
@@ -101,13 +108,13 @@ module.exports.createNote = function (req, res) {
     newNote.createdate = Date.now();
     newNote.finished = false;
     store.add(newNote, function (err, note) {
-        res.render("succeeded", { 'css' : req.cookies.style, note});
+        res.redirect("/");
     })
 };
 
 module.exports.editNode = function (req, res) {
     store.get(req.params.id, function (err, note) {
-        res.render("editNote", { 'css' : req.cookies.style, note, 'title' : "Node Pro - Edit Node"});
+        res.render("editNote", { 'css' : req.cookies.style, note, 'headtitle' : "Node Pro - Edit Node"});
     })
 };
 
