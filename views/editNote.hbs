@@ -10,25 +10,25 @@
 </header>
 
 <main>
-<article id="{{_id}}" class="">
-    <form action="{{_id}}" method="post">
+<article id="{{note._id}}" class="">
+    <form action="{{note._id}}" method="post">
         <label for="title">Title</label>
-        <input name="title" type="test" value="{{title}}"/>
+        <input name="title" type="test" value="{{note.title}}"/>
 
         <label for="description">Description</label>
-        <textarea name="description">{{description}}</textarea>
+        <textarea name="description">{{note.description}}</textarea>
 
-        <label for="importance">Importance</label>
-        <input name="importance" type="number" min="1" max="5" value="{{importance}}"/>
+        <label for="importance">Importance (1 to 5)</label>
+        <input type="range" name="importance" min="1" max="5" value="{{note.importance}}" required/>
 
         <label for="duedate">Due to</label>
-        <input name="duedate" type="date" value="{{duedate}}"/>
+        <input name="duedate" type="date" value="{{note.duedate}}"/>
 
 
-        <input name="createdate" type="hidden" value="{{createdate}}"/>
+        <input name="createdate" type="hidden" value="{{note.createdate}}"/>
 
-        <label for="finished" {{finished}}>Finished</label>
-        <input name="finished" type="checkbox" {{#if finished}}checked{{/if}} />
+        <label for="finished">Finished</label>
+        <input name="finished" type="checkbox" {{#if note.finished}}checked{{/if}} />
 
         <div id="submitbuttons">
             <button type="submit" class="btn-green">Save</button>

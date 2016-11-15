@@ -114,7 +114,7 @@ module.exports.createNote = function (req, res) {
 
 module.exports.editNode = function (req, res) {
     store.get(req.params.id, function (err, note) {
-        res.render("editNote", { 'css' : req.cookies.style, note, 'headtitle' : "Node Pro - Edit Node"});
+        res.render("editNote", { 'css' : req.cookies.style, 'note' : note, 'headtitle' : "Node Pro - Edit Node"});
     })
 };
 
