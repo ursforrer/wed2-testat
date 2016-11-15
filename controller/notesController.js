@@ -3,116 +3,74 @@
  */
 var store = require("../services/noteStore.js");
 
+function initalConfig(res, parameters) {
+    res.cookie("style", parameters[0]);
+    res.cookie("filter", parameters[1]);
+    res.cookie("sortby", parameters[2]);
+    res.cookie("sort", parameters[3]);
+}
+
 module.exports.showIndex = function(req, res)
 {
     var orderBy = req.query['orderBy'];
     var apperance = req.query['style'];
     var filter = req.query['filter'];
-    var orderParameter;
-    var orderParameterTwo;
-    var styleParameter;
-    var filterParameter;
-    var sort;
+    var parameters = [];
 
-    // Behandlung des Style Parameters
-    if (apperance === undefined || apperance === null) {
-        // Initale Seztung der Werte, falls nichts anderes angegben ist.
-        if (req.cookies.style === undefined || req.cookies.style === null) {
-            styleParameter = "light";
-            res.cookie("style", styleParameter);
-        }
-        else {
-            // Falls nichts übermittelt wurde, aber bereits etwas gesetzt ist, wird dies übergeben
-            styleParameter = req.cookies.style;
-        }
+    // Inital Config
+    if (req.cookies.style === undefined && req.cookies.sortby === undefined && req.cookies.filter === undefined && req.cookies.sort === undefined) {
+        parameters = ["light", "false", "duedate", "1"];
+        initalConfig(res,parameters);
     }
+    // Case if not inital
     else {
-        // Parameter so setzen, wie es in der Query angegeben ist.
-        styleParameter = apperance;
-        res.cookie("style", styleParameter);
-    }
+        parameters[0] = (apperance === undefined ? req.cookies.style : apperance);
+        res.cookie("style", parameters[0]);
 
-    // Behandlung des Filter Parameters
-    if (filter === undefined || filter === null) {
-        // Initale Seztung der Werte, falls nichts anderes angegben ist.
-        if (req.cookies.filter === undefined || req.cookies.filter === null) {
-            filterParameter = false;
-            res.cookie("filter", filterParameter);
-        }
-        else {
-            // Falls nichts übermittelt wurde, aber bereits etwas gesetzt ist, wird dies übergeben
-            filterParameter = req.cookies.filter;
-        }
-    }
-    else {
-        // Paramter so setzen, wie es in der Query angegeben ist.
-        filterParameter = filter;
-        res.cookie("filter", filterParameter);
-    }
+        parameters[1] = (filter === undefined ? req.cookies.filter : filter);
+        res.cookie("filter", parameters[1]);
 
-    // Behandlung des Order Parameters
-    if (orderBy === undefined || orderBy === null) {
-        // Falls nichts mitgegeben wurde, sollten die Werte so belassen werden.
-        if (req.cookies.sortby === undefined || req.cookies.sortby === null) {
-            // Initial, falls keine Cookies vorhanden sind.
-            orderParameter = "duedate";
-            orderParameterTwo = "1";
-            res.cookie("sortby", orderParameter);
-            res.cookie("sort", orderParameterTwo);
-        }
-        else {
-            // Ansonsten vorherigen Cookieparameter auslesen
-            orderParameter = req.cookies.sortby;
-            orderParameterTwo = req.cookies.sort;
-        }
-    }
-    else {
-        // Werte setzen, wenn etwas über die Queryparameter mitgegeben wurde.
-        res.cookie("sortby", orderBy);
+        parameters[2] = (orderBy === undefined ? req.cookies.sortby : orderBy);
+        res.cookie("sortby", parameters[2]);
+
         if (orderBy == req.cookies.sortby) {
-            if (req.cookies.sort == "-1") {
-                orderParameterTwo = "1";
-            }
-            else {
-                orderParameterTwo = "-1";
-            }
+            parameters[3] = (req.cookies.sort == "-1" ? "1" : "-1")
         }
         else {
-            orderParameterTwo = "1";
+            parameters[3] = "1";
         }
-        res.cookie("sort", orderParameterTwo);
-        orderParameter = orderBy;
+        res.cookie("sort", parameters[3]);
     }
 
-    // Workaround, da aus der Session der Stirngwert gelesen wird und nicht der Booleanwert
-    if (filterParameter == "false") {
-        filterParameter = false;
-    }
-    else if (filterParameter == "true") {
-        filterParameter = true;
-    }
+    // To Convert the Data from string to boolean (output from session is boolean)
+    var filterForRender = parameters[1] != "false";
 
-    var styleForRender = (styleParameter == "light" ? "dark" : "light");
+    // Invert for the correct value
+    var styleForRender = (parameters[0] == "light" ? "dark" : "light");
 
-    store.all(orderParameter, orderParameterTwo, filterParameter, function (err, notes) {
-        res.render("index", {'notes' : notes, 'style' : styleForRender, 'css' : styleParameter, 'filter' : filterParameter, 'headtitle' : "Node Pro - List"});
+    store.all(parameters[2], parameters[3], filterForRender, function (err, notes) {
+        res.render("index", {'notes' : notes, 'style' : styleForRender, 'css' : parameters[0], 'filter' : filterForRender, 'headtitle' : "Node Pro - List"});
     })
 };
 
 module.exports.newNode = function (req, res) {
+    // Get the form for the new note
     res.render("newNote", { 'css' : req.cookies.style, 'headtitle' : "Node Pro - New Node"});
 };
 
 module.exports.createNote = function (req, res) {
+    // Set default values
     var newNote = req.body;
     newNote.createdate = Date.now();
     newNote.finished = false;
+    // Add note to the database
     store.add(newNote, function (err, note) {
         res.redirect("/");
     })
 };
 
 module.exports.editNode = function (req, res) {
+    // Get informations about the note from the database
     store.get(req.params.id, function (err, note) {
         res.render("editNote", { 'css' : req.cookies.style, 'note' : note, 'headtitle' : "Node Pro - Edit Node"});
     })
@@ -120,16 +78,9 @@ module.exports.editNode = function (req, res) {
 
 module.exports.update = function (req, res) {
     var editNote = req.body;
-    console.log(editNote.finished);
-    if (editNote.finished == "on") {
-        console.log("on");
-        editNote.finished = true;
-        console.log(editNote.finished);
-    } else {
-        console.log("off");
-        editNote.finished = false;
-        console.log(editNote.finished);
-    }
+    // To set, true or false to the database
+    editNote.finished = editNote.finished !== undefined;
+    // Update in the database
     store.update(req.params.id, editNote, function (err, note) {
         res.redirect("/");
     });
