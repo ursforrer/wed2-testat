@@ -120,10 +120,15 @@ module.exports.editNode = function (req, res) {
 
 module.exports.update = function (req, res) {
     var editNote = req.body;
+    console.log(editNote.finished);
     if (editNote.finished == "on") {
-        editNote.finished == "true";
+        console.log("on");
+        editNote.finished = true;
+        console.log(editNote.finished);
     } else {
-        editNote.finished == "false";
+        console.log("off");
+        editNote.finished = false;
+        console.log(editNote.finished);
     }
     store.update(req.params.id, editNote, function (err, note) {
         res.redirect("/");
