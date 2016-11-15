@@ -55,7 +55,11 @@
                         <time class="bold" datetime="{{duedate}}">{{duedate}}</time>
                     </div>
                     <div class="importance">
-                        <p class="bold">Importance: {{importance}}</p>
+                        <p class="bold nobreak">Importance:</p><span>
+                        {{#times importance}}
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        {{/times}}
+                        </span>
                     </div>
                 </header>
                 <div class="status">
