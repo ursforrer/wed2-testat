@@ -18,7 +18,8 @@ module.exports.showIndex = function(req, res)
     var parameters = [];
 
     // Inital Config
-    if (req.cookies.style === undefined && req.cookies.sortby === undefined && req.cookies.filter === undefined && req.cookies.sort === undefined) {
+    if (req.cookies.style === undefined && req.cookies.sortby === undefined &&
+        req.cookies.filter === undefined && req.cookies.sort === undefined) {
         parameters = ["light", "false", "duedate", "1"];
         initalConfig(res,parameters);
     }
