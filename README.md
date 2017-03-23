@@ -1,5 +1,5 @@
 # wed2-testat
-Module WED2 @ HSR, Semster HS 16/17
+Module WED2 @ HSR, Semster HS 16/17, Hello
 
 ## Beschreibung
 Ihre Miniprojekt-Aufgabe besteht darin, eine Notizen-Webapplikation zu programmieren. Es soll
