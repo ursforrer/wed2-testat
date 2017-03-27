@@ -15,6 +15,7 @@ after_success:
 - tar -czf package.tgz wed2-testat
 - export SSHPASS=$DEPLOY_PASS
 - sshpass -e scp -P 15002 -o stricthostkeychecking=no package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+- sshpass -e ssh -p 15002 $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
 - rm -rf package.tgz
 env:
   global:
