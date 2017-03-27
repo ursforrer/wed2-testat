@@ -10,8 +10,7 @@ addons:
     - sshpass
 after_success:
 - mkdir tosend
-- cp -r /home/travis/build/ursforrer/wed2-testat tosend
-- tar -czf package.tgz tosend
+- tar -czf package.tgz /home/travis/build/ursforrer/wed2-testat
 - export SSHPASS=$DEPLOY_PASS
 - sshpass -e scp -P 15002 -o stricthostkeychecking=no package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 env:
