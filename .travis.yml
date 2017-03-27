@@ -9,7 +9,6 @@ addons:
     packages:
     - sshpass
 after_success:
-- mkdir tosend
 - cd ..
 - ls
 - tar -czf package.tgz wed2-testat
