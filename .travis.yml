@@ -8,9 +8,9 @@ addons:
     packages:
     - sshpass
 after_success:
-- mkdir build
-- mv * build
-- tar -czf package.tgz build
+- mkdir tosend
+- mv * tosend
+- tar -czf package.tgz tosend
 - export SSHPASS=$DEPLOY_PASS
 - sshpass -e scp -P 15022 package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 env:
