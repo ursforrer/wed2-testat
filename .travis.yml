@@ -1,3 +1,4 @@
+sudo: required
 language: node_js
 node_js:
 - '6'
@@ -8,11 +9,11 @@ addons:
     packages:
     - sshpass
 after_success:
-- mkdir tosend
-- mv * tosend
-- tar -czf package.tgz tosend
+- mkdir /tosend
+- mv * /tosend
+- tar -czf package.tgz /tosend
 - export SSHPASS=$DEPLOY_PASS
-- sshpass -e scp -P 15022 package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+- sshpass -e scp -P 15022 -o stricthostkeychecking=no package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 env:
   global:
   - secure: oMBk6RmhAx7nXouIgmhUI9tmufX/Q96NdL3rrWGI8na9mhH8lWIgTmTapVqK5V/kyACavm+awt9jAbjoEZMGUU9S19Xe4s9n9nnb5HO7b4qF69gCIfiKGhLnKeAdTPQcu8gbqSayx/z++SdhJ/DHRIN2eCiXyn+3bu90oLW5/lGkLLIniaN4wI35vD1md+KfC+G7Pe8Wqjr0+8+mX59ILdDeiBXQwFvfQtmwOyANWvxWOF8MVLGOSeGyjuobj/e2o/oW5zPigcbhCelZxJGtS+96HXtzuES6AJ6Fuicps+32XaCO1Ia7veJbfvoe18UNgCabn7+u4E0FYRtSt6qpWjSei+Bm0KjgPCJ5YvLLo2qW6CCMCloVECbRzA7viAYng3SUb6U/a+4BPgwt6amaeQsjQ4kbbAD6sllYThjHeiottYnbnqOydHy7/IN2ANCQA4GqwQ+U+bgRFmj69ECf9x6MZFGGU4wmqsCDNm7uw6jk3TQ2a8W67dgA+/ESWWLfkf+CUUSbIALrn8gibfJZBWsF+TIqFrHat5JXZkTIj4VmGZUBQ/wH0ySqimMpbjXnW60dQq1xmp7JTjT7AR5v7GNSaLXtKS0F/IhOSb5jHE0wan5lbEHwl/+HwtKLNjf1ucXCMXSb7Y7dDx219hb3/qn3/ZBPvo2CKTu4J4sNYRE=
