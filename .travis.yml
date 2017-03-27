@@ -10,9 +10,12 @@ addons:
     - sshpass
 after_success:
 - mkdir tosend
-- tar -czf package.tgz /home/travis/build/ursforrer/wed2-testat
+- cd ..
+- ls
+- tar -czf package.tgz wed2-testat
 - export SSHPASS=$DEPLOY_PASS
 - sshpass -e scp -P 15002 -o stricthostkeychecking=no package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+- rm -rf package.tgz
 env:
   global:
   - secure: UzCZ1STYHTtTQviBypNpj586oEXmVVJOrgKykphE9bViBHhX0KxoqRCRF8t3TnagZFHCDa0XRHlUhsI+26HflnWRYh6WnmfwA+Ux7yJz+Hnjmc7VEsX3jt8BmBEWb6se9GBmren8XSAJ2MYnHU46WgA0zOwSCJP91hvmcVNc4j7Ia5LLSMApxtY/QUzjf8j7WGue3kQM9GG7WJHpUECXQfyUzcAAJc+PnF8mJ1oKHs3KVEZVlts2PHByBUjMoIZqbMlBherpFHGpiQJW3UBXqR76WX0f80BoeCMp1ARh7N5VotqkIlN0g22mMTi5xv3diZHZIC2se493PfMZeDft7PN03Kd8XYt734s9fy4fM3soIve4KOZNC+u3LOUReA9nMX4RgqS421JIrC4m1pNehMXukcMLxAGlRI7QtzPfoqeRD56CfnoUqQdjdWP+clyf8RBU3uL5I8ItstpJOGAY8/wtH4BOkdzBsN55FEEIbEPQ2MZGbvj+25JQmHy9hcSa17uLCfwN8+kplsSYYk/dVaUS17IghcxY1tvYbgBF+Flc7G1k6IEoxuCyJ/ToENlCMTACwEE2Hohc8VkRynvOovjKwlLrfzwIZkdN2GVqTswVHk9QMOCnXG+dsd/dF4XdJ1zPUsXDkUrzPrhbUfRi8kQONEMEkylz11SRiLnudHQ=
